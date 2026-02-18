@@ -1,5 +1,5 @@
 // Browser-safe API configuration
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://landeng.onrender.com/api';
 
 const API = {
   get: async (path) => {

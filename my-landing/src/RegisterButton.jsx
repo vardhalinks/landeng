@@ -41,7 +41,7 @@ function loadRazorpayScript() {
   });
 }
 
-const RegisterButton = ({ amount = 99, className = "btn", label = "Register Now At ₹99/- Only" }) => {
+const RegisterButton = ({ amount = 99, className = "btn", label = "Book Now At ₹99/- Only" }) => {
   const [loading, setLoading] = useState(false);
   const paymentStartedRef = useRef(false);
 
@@ -51,7 +51,7 @@ const RegisterButton = ({ amount = 99, className = "btn", label = "Register Now 
       paymentStartedRef.current = true;
 
       await loadRazorpayScript();
-      const res = await fetch("https://main-backend-dzf5.onrender.com/create-order", {
+      const res = await fetch("https://landeng.onrender.com/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount }),
@@ -108,6 +108,11 @@ const RegisterButton = ({ amount = 99, className = "btn", label = "Register Now 
       } else {
         window.open(CALENDLY_URL, "_blank");
       }
+      // Calendly popup open ho gaya, loading ko immediately clear kar do
+      setTimeout(() => {
+        setLoading(false);
+        window.globalLoading(false);
+      }, 300);
     } catch (err) {
       console.error(err);
       setLoading(false);
@@ -136,7 +141,7 @@ const RegisterButton = ({ amount = 99, className = "btn", label = "Register Now 
             <span className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 rotate-12 animate-shine" />
 
             <span className="flex items-center gap-2 relative z-10">
-              {label ?? `Register Now @ ₹${amount}`}
+              {label ?? `Book Now @ ₹${amount}`}
               <span className="text-sm font-semibold px-2 py-0.5 bg-red-600 text-yellow-300 rounded-md animate-priceBlink">Limited</span>
               <span className="text-xl animate-arrowMove">👈</span>
             </span>

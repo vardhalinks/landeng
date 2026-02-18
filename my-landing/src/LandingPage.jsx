@@ -27,7 +27,7 @@ const names = [
 /*********************************
  * Shared UI
  *********************************/
-function PrimaryButton({ label = "Register Now At ₹99/- Only", className = "", ...props }) {
+function PrimaryButton({ label = "Book Now At ₹99/- Only", className = "", ...props }) {
   const classes =
     "px-8 py-3 md:px-12 md:py-4 bg-gradient-to-r from-yellow-300 to-yellow-500 text-black font-semibold " +
     "text-sm md:text-base rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 animate-buttonGlow " +
@@ -223,7 +223,7 @@ function ExitPopup() {
           />
           <RegisterButton
             amount={99}
-            label="Register Now"
+            label="Book Now"
             className="px-6 py-2 bg-gradient-to-r from-yellow-300 to-yellow-500 text-black font-semibold rounded-2xl shadow-lg hover:shadow-xl"
           />
         </div>
@@ -1621,7 +1621,7 @@ export default function LandingPage() {
             <p className="text-zinc-700 mb-6">Reserve your private session now — limited seats available.</p>
             <RegisterButton
               amount={99}
-              label={"Register Now @ ₹99"}
+              label={"Book Now @ ₹99"}
               className={"px-10 py-4 text-black font-extrabold text-lg rounded-3xl bg-gradient-to-r from-[#FFD700] to-[#FFB300] shadow-[0_0_18px_rgba(255,200,0,0.7)] hover:shadow-[0_0_30px_rgba(255,200,0,1)] transition-all duration-300"}
             />
           </div>

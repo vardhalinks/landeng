@@ -44,7 +44,7 @@ export default function SessionBooking() {
       if (window.globalLoading) window.globalLoading(true);
       await loadRazorpayScript();
 
-      const res = await fetch("https://main-backend-dzf5.onrender.com/create-order", {
+      const res = await fetch("https://landeng.onrender.com/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: SESSION_AMOUNT }),
