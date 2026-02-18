@@ -71,8 +71,14 @@ const RegisterButton = ({ amount = 99, className = "btn", label = "Book Now At â
           try {
             alert("Payment Successful! Your session is confirmed.");
           } finally {
+            paymentStartedRef.current = false;
             setLoading(false);
             window.globalLoading(false);
+          }
+        },
+        modal: {
+          onClose: function () {
+            paymentStartedRef.current = false;
           }
         },
         theme: { color: "#F6C84C" },
@@ -82,6 +88,7 @@ const RegisterButton = ({ amount = 99, className = "btn", label = "Book Now At â
       rzp.open();
     } catch (err) {
       console.error(err);
+      paymentStartedRef.current = false;
       setLoading(false);
       window.globalLoading(false);
     }
@@ -105,8 +112,16 @@ const RegisterButton = ({ amount = 99, className = "btn", label = "Book Now At â
       await loadCalendlyScript();
       if (window.Calendly && typeof window.Calendly.initPopupWidget === "function") {
         window.Calendly.initPopupWidget({ url: CALENDLY_URL });
+        // Calendly close hone ke 2 seconds baad Razorpay open karo
+        setTimeout(() => {
+          openPayment();
+        }, 2000);
       } else {
         window.open(CALENDLY_URL, "_blank");
+        // External link case me bhi 3 seconds baad try karo
+        setTimeout(() => {
+          openPayment();
+        }, 3000);
       }
       // Calendly popup open ho gaya, loading ko immediately clear kar do
       setTimeout(() => {
